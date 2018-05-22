@@ -1,11 +1,12 @@
-<h1 class="p-3 display-3">List of tasks</h1>
 
+
+<h1 class="p-3 display-3">List of tasks</h1>
 
   <ul  style="list-style-type: none;>
 
     <% @tasks.each do |task| %>
 
-    <li class=><% if task.completed %>
+    <li><% if task.completed %>
 
     <i class="far fa-check-square"></i>
 
@@ -13,11 +14,21 @@
 
     <i class="far fa-square"></i>
 
-    <% end  %>
-
-    <%= link_to task.title, task_path(task) %></li>
-
     <% end %>
 
+
+    <%= link_to task.title, task_path(task) %>
+
+    <%= link_to task_path(task), method: :delete, class: 'text-primary', data: { confirm: 'Are you sure?' } do %>
+        <i class="fas fa-trash-alt"></i>
+    <% end %>
+
+    <% end %>
+  </li>
+
   </ul>
+
+  <hr />
+
+<p class="link-margin"><i class="fas fa-plus"></i><%= link_to " Add a new task", new_task_path %></p>
 
